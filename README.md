@@ -1,39 +1,49 @@
 # Quản lý Chi tiêu Cá nhân
 
-Ứng dụng dòng lệnh (CLI) đơn giản giúp bạn ghi lại các khoản thu/chi,
-phân loại theo danh mục và xem tổng kết theo từng tháng.
+Ứng dụng quản lý thu/chi cá nhân, có **giao diện cửa sổ (GUI)** dễ dùng
+cho người không rành công nghệ — chỉ cần bấm nút, chọn trong danh sách.
+Ngoài ra vẫn giữ bản dòng lệnh (CLI) cho ai thích gõ nhanh.
 
 ## Yêu cầu
 
-- Python 3.8 trở lên (không cần cài thêm thư viện ngoài, chỉ dùng thư viện chuẩn)
+- Python 3.8 trở lên (chỉ dùng thư viện chuẩn: `sqlite3`, `tkinter` — không cần cài thêm gì)
 
 ## Cách chạy
 
 ```bash
-python3 main.py
+python3 gui.py      # Bản giao diện cửa sổ (khuyên dùng)
+python3 main.py     # Bản dòng lệnh (CLI)
 ```
 
 Dữ liệu được lưu trong file `expenses.db` (SQLite) cùng thư mục,
-sẽ tự động được tạo ở lần chạy đầu tiên.
+sẽ tự động được tạo ở lần chạy đầu tiên. Cả hai bản GUI và CLI
+dùng chung một database, có thể chạy xen kẽ thoải mái.
 
-## Chức năng
+## Chức năng (bản GUI - gui.py)
 
-1. **Thêm khoản thu** – ghi lại tiền lương, thưởng, trợ cấp...
-2. **Thêm khoản chi** – ghi lại chi tiêu theo danh mục: Ăn uống, Học tập,
-   Giải trí, Đi lại, Hóa đơn, hoặc danh mục tự đặt.
-3. **Xem danh sách giao dịch** – liệt kê toàn bộ giao dịch đã nhập.
-4. **Xem tổng kết theo tháng** – tổng thu, tổng chi, số dư, và tỷ lệ
-   chi tiêu theo từng danh mục (kèm biểu đồ thanh đơn giản).
-5. **Xóa giao dịch** – xóa một giao dịch theo ID.
+**Tab "Giao dịch":**
+- Form bên trái: chọn loại (Thu/Chi), nhập số tiền, chọn danh mục
+  (Ăn uống, Học tập, Giải trí, Đi lại, Hóa đơn, hoặc gõ danh mục riêng),
+  ghi chú, ngày → bấm "Thêm giao dịch".
+- Bảng bên phải: danh sách toàn bộ giao dịch, có thể chọn dòng rồi
+  bấm "Xóa giao dịch đã chọn".
+
+**Tab "Tổng kết theo tháng":**
+- Chọn tháng từ danh sách thả xuống.
+- Hiển thị tổng thu, tổng chi, số dư.
+- Hai bảng: chi tiêu và thu nhập theo từng danh mục, kèm phần trăm.
 
 ## Cấu trúc dự án
 
 ```
 expense_tracker/
-├── main.py         # Giao diện dòng lệnh, luồng chính của ứng dụng
-├── database.py     # Thao tác với SQLite (thêm, lấy, xóa giao dịch)
-├── utils.py        # Danh mục mặc định, định dạng tiền tệ/ngày tháng
-├── expenses.db      # Cơ sở dữ liệu (tự tạo khi chạy lần đầu)
+├── gui.py           # Giao diện cửa sổ (tkinter) — bản chính, khuyên dùng
+├── main.py          # Giao diện dòng lệnh (CLI) — bản thay thế
+├── database.py      # Thao tác với SQLite (thêm, lấy, xóa giao dịch)
+├── utils.py         # Danh mục mặc định, định dạng tiền tệ/ngày tháng
+├── build.bat         # Đóng gói bản GUI thành .exe
+├── build_cli.bat     # Đóng gói bản CLI thành .exe (tùy chọn)
+├── expenses.db       # Cơ sở dữ liệu (tự tạo khi chạy lần đầu)
 └── README.md
 ```
 
@@ -58,7 +68,7 @@ Lưu ý: `expenses.db` sẽ được tạo ngay cạnh file `.exe`, nên hãy gi
 
 ```bash
 pip install pyinstaller
-pyinstaller --onefile --console --name QuanLyChiTieu main.py
+pyinstaller --onefile --windowed --name QuanLyChiTieu gui.py
 ```
 
 ## Mở rộng trong tương lai (gợi ý)

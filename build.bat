@@ -1,15 +1,15 @@
 @echo off
 REM ============================================
 REM  Script dong goi Quan Ly Chi Tieu Ca Nhan
-REM  thanh file .exe chay tren Windows
+REM  (ban giao dien cua so) thanh file .exe
 REM ============================================
 
 echo Dang cai dat PyInstaller (neu chua co)...
 pip install -r requirements.txt
 
 echo.
-echo Dang dong goi thanh file .exe ...
-pyinstaller --onefile --console --name QuanLyChiTieu main.py
+echo Dang dong goi thanh file .exe (giao dien cua so, khong co man hinh den)...
+pyinstaller --onefile --windowed --name QuanLyChiTieu gui.py
 
 echo.
 echo ================================================

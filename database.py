@@ -5,23 +5,9 @@ Quản lý Chi tiêu Cá nhân.
 """
 
 import sqlite3
-import sys
 from pathlib import Path
 
-
-def _get_app_dir():
-    """
-    Trả về thư mục chứa ứng dụng.
-    Khi chạy dạng .py bình thường: thư mục chứa file database.py.
-    Khi đã đóng gói bằng PyInstaller (.exe): thư mục chứa file .exe,
-    để database không bị lưu vào thư mục tạm rồi mất khi đóng app.
-    """
-    if getattr(sys, "frozen", False):
-        return Path(sys.executable).parent
-    return Path(__file__).parent
-
-
-DB_PATH = _get_app_dir() / "expenses.db"
+DB_PATH = Path(__file__).parent / "expenses.db"
 
 
 def get_connection():
