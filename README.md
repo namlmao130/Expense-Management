@@ -1,14 +1,11 @@
-
-
 ## bash
-python3 gui.py      # Bản giao diện cửa sổ (khuyên dùng)
-python3 main.py     # Bản dòng lệnh (CLI)
+- python3 gui.py      # Bản giao diện cửa sổ (khuyên dùng)
+- python3 main.py     # Bản dòng lệnh (CLI)
 
-
-Dữ liệu được lưu trong file `expenses.db` (SQLite) cùng thư mục,
+- Dữ liệu được lưu trong file `expenses.db` (SQLite) cùng thư mục,
 sẽ tự động được tạo ở lần chạy đầu tiên. Cả hai bản GUI và CLI
 dùng chung một database, có thể chạy xen kẽ thoải mái.
-Lưu ý: `expenses.db` sẽ được tạo ngay cạnh file `.exe`, nên hãy giữ file `.exe` trong một thư mục cố định để không bị mất dữ liệu khi di chuyển.
+- Lưu ý: `expenses.db` sẽ được tạo ngay cạnh file `.exe`, nên hãy giữ file `.exe` trong một thư mục cố định để không bị mất dữ liệu khi di chuyển.
 
 ## Chức năng (bản GUI - gui.py)
 
